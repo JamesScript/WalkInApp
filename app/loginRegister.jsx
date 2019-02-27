@@ -10,7 +10,7 @@ class LoginRegister extends React.Component {
 
   render() {
     return(
-      <div>
+      <div id="loginRegister">
         <h2>Returning? Log in below</h2>
         <UserForm formType="login"/>
         <h2>First time here? Register below</h2>

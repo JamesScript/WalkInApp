@@ -8,6 +8,32 @@ form * {
   margin: 3px;
 }
 
+input[type=text], input[type=password] {
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.twoPerRow {
+  display: grid;
+  width: 350px;
+  grid-template-columns: 100px auto;
+}
+
+.twoPerRow label {
+  text-align: right;
+}
+
+.twoPerRow input {
+  width: 200px;
+}
+
+#loginRegister {
+  width: 400px;
+  padding: 50px;
+  border: 3px solid #EEE;
+  box-shadow: 5px 5px 15px;
+}
+
 #userTypeChoice {
   display: flex;
   align-items: center;

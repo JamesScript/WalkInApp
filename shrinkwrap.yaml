@@ -3,6 +3,8 @@ dependencies:
   jsx-loader: 0.13.2
   mongodb: 3.1.13
   mongoose: 5.4.15
+  passport: 0.4.0
+  passport-local: 1.0.0
   react: 16.8.3
   react-dom: 16.8.3
   webpack: 4.29.5
@@ -2299,6 +2301,29 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-s2PlXoAGym/iF4TS2yK9FdeRfxQ=
+  /passport-local/1.0.0:
+    dependencies:
+      passport-strategy: 1.0.0
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha1-H+YyaMkudWBmJkN+O5BmYsFbpu4=
+  /passport-strategy/1.0.0:
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha1-tVOaqPwiWj0a0XlHbd8ja0QPUuQ=
+  /passport/0.4.0:
+    dependencies:
+      passport-strategy: 1.0.0
+      pause: 0.0.1
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha1-xQlWkTR71a07XhgCOMORTRbwWBE=
   /path-browserify/0.0.0:
     dev: false
     resolution:
@@ -2329,6 +2354,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
+  /pause/0.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-HUCLP9t2kjuVQ9lvtMnf1TXZy10=
   /pbkdf2/3.0.17:
     dependencies:
       create-hash: 1.2.0
@@ -3372,6 +3401,8 @@ specifiers:
   jsx-loader: ^0.13.2
   mongodb: ^3.1.11
   mongoose: ^5.4.15
+  passport: ^0.4.0
+  passport-local: ^1.0.0
   react: ^16.8.2
   react-dom: ^16.6.3
   webpack: ^4.29.2
