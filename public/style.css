@@ -4,3 +4,11 @@
   font-family: 'Nunito', sans-serif;
 }
 
+form * {
+  margin: 3px;
+}
+
+#userTypeChoice {
+  display: flex;
+  align-items: center;
+}
