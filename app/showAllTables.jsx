@@ -11,6 +11,12 @@ class ShowAllTables extends React.Component {
     }
     this.listAllTables = this.listAllTables.bind(this);
     this.listAllTables();
+    socket.on('update tables', () => {
+      this.listAllTables() 
+    });
+    socket.on('hello', () => {
+      console.log('hello from the ether');
+    });
   }
   
   listAllTables() {

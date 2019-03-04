@@ -173,7 +173,7 @@ module.exports = (app, socket) => {
     models.user.find({realname: req.body.restaurant}, (err, docs) => {
       if (err) return console.error(err);
       // Cannot rate tables in own restaurant
-      if (docs[0].username === req.user.username) return res.send('cannot rate own tables');
+      if (docs[0].username === req.user.username) return res.send('You cannot rate your own tables');
       let tables = docs[0].tables;
       tables = tables.map(table => {
         if (req.body.tableName === table.numberOrName) {
@@ -198,7 +198,7 @@ module.exports = (app, socket) => {
       });
       models.user.findOneAndUpdate({realname: req.body.restaurant}, {tables: tables}, err => {
         if (err) return console.error(err);
-        res.send('ratings updated');
+        res.send('Ratings successfully updated');
       });
     });
   });
