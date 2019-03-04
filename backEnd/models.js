@@ -10,16 +10,24 @@ db.once('open', () => { console.log('connected to database') });
 // Mongoose Schemas and Models
 // User
 const userSchema = new mongoose.Schema({
+  realname: String,
   username: String,
   password: String,
-  isRestaurant: Boolean
+  isRestaurant: Boolean,
+  dateCreated: Date,
+  tables: Array,
+  shortid: String
 });
+userSchema.methods.validPassword = (pwd, user) => {
+  return user.password === pwd;
+};
 const User = mongoose.model('User', userSchema);
 
 // Table
 const tableSchema = new mongoose.Schema({
   numberOrName: String,
-  ratings: [Number]
+  available: Boolean,
+  ratings: Array
 });
 const Table = mongoose.model('Table', tableSchema);
 
