@@ -13,6 +13,7 @@ class RestaurantSettings extends React.Component {
   
   exit() {
     document.getElementById('restaurantSettings').style.display = "none";
+    socket.emit('update tables');
   }
   
   render() {

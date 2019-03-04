@@ -26,8 +26,8 @@ routes(app);
 // Socket
 io.on('connection', socket => {
   console.log('a user connected');
-  socket.on('hello', () => {
-    socket.emit('hello');
+  socket.on('update tables', () => {
+    io.emit('update tables');
   });
 });
 

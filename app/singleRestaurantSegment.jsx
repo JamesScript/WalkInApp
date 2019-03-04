@@ -31,7 +31,7 @@ class SingleRestaurantSegment extends React.Component {
     axios.post('/rateTable', postObject)
     .then(res => {
       alert(res.data);
-      // socket emit message
+      socket.emit('update tables');
     });
   }
   
