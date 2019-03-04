@@ -9,7 +9,6 @@ class RestaurantSettings extends React.Component {
     this.style = {
       display: "none"
     }
-
   }
   
   exit() {
