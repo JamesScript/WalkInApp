@@ -1,6 +1,6 @@
 {
   "name": "WalkIn_App",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A MERN stack App for Restuarants and Customers",
   "main": "server.js",
   "scripts": {
@@ -17,7 +17,13 @@
     "webpack": "^4.29.2",
     "webpack-cli": "^3.2.2",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "axios": "^0.18.0",
+    "express-session": "^1.15.6",
+    "socket.io": "^2.2.0",
+    "shortid": "^2.2.14"
   },
   "engines": {
     "node": "8.x"

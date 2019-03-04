@@ -1,23 +1,37 @@
 // Dependencies
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 // Modules
-const models = require('./app/models');
-const routes = require('./app/routes');
+const models = require('./backEnd/models');
+const routes = require('./backEnd/routes');
 
 // App
-const app = express();
 app.use(express.static('public'));
+app.use(cors());
+app.use(bodyParser.json());
 
 // Homepage
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 // Routes
 routes(app);
 
+// Socket
+io.on('connection', socket => {
+  console.log('a user connected');
+  socket.on('hello', () => {
+    socket.emit('hello');
+  });
+});
+
 // Listen for Requests
-const listener = app.listen(process.env.PORT, () => {
+const listener = http.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port);
 });
