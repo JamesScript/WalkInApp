@@ -16,7 +16,7 @@ class LoginRegister extends React.Component {
   }
   
   checkIfLoggedIn() {
-    axios.get('/amILoggedIn')
+    axios.get('/userData')
     .then(res => {
       if (res.data.username !== undefined) {
         this.setState({

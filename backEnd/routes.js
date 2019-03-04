@@ -10,9 +10,23 @@ module.exports = (app, socket) => {
   // Passport Set Up, authentication, session etc.
   passportSetup(app);
 
-  // Test
+  // Am I Logged In? Returns Boolean
   app.get("/amILoggedIn", (req, res) => {
     res.send(typeof req.user === "object");
+  });
+  
+  // User Data
+  app.get("/userData", (req, res) => {
+    // don't send back password even hashed for obvioius reasons
+    let sendBack;
+    if (req.user) {
+      sendBack = {
+        username: req.user.username,
+        realname: req.user.realname,
+        isRestaurant: req.user.isRestaurant
+      }
+    }
+    res.send(sendBack);
   });
   
   // Login - authenticate using passport-local npm package
@@ -103,7 +117,7 @@ module.exports = (app, socket) => {
     models.user.find({isRestaurant: true}, (err, docs) => {
       let tablesToSend = []
       docs.forEach(doc => {
-        tablesToSend.push({restaurant: doc.realname, id: doc._id.$oid, tables: doc.tables});
+        tablesToSend.push({restaurant: doc.realname, id: doc.shortid, tables: doc.tables});
       });
       res.send(tablesToSend);
     });
@@ -184,7 +198,7 @@ module.exports = (app, socket) => {
       });
       models.user.findOneAndUpdate({realname: req.body.restaurant}, {tables: tables}, err => {
         if (err) return console.error(err);
-        res.send('tables updated');
+        res.send('ratings updated');
       });
     });
   });

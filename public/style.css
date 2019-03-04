@@ -146,3 +146,13 @@ input[type=submit]:focus, button:focus {
   color: #AA2222;
   cursor: pointer;
 }
+
+.tableInfo {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.tableInfo p {
+  width: 100px;
+  text-align: left;
+}
