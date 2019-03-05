@@ -1,5 +1,6 @@
 dependencies:
   axios: 0.18.0
+  bcrypt: 3.0.4
   body-parser: 1.18.3
   cors: 2.8.5
   express: 4.16.4
@@ -380,6 +381,17 @@ packages:
       node: '>= 0.4.0'
     resolution:
       integrity: sha1-R2iMuZu2gE8OBtPnY7HDLlfY5rY=
+  /bcrypt/3.0.4:
+    bundledDependencies:
+      - node-pre-gyp
+    dependencies:
+      nan: 2.12.1
+    dev: false
+    engines:
+      node: '>= 6.0.0'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-XqmCym97kT6l+jFEKeFvGuNE9aVEFDGsLMv+tIBTXkJI1sHS0g8s7VQEPJagSMPwWiB5Vpr2kVzVKc/YfwWthA==
   /better-assert/1.0.2:
     dependencies:
       callsite: 1.0.0
@@ -2226,7 +2238,6 @@ packages:
       integrity: sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
   /nan/2.12.1:
     dev: false
-    optional: true
     resolution:
       integrity: sha512-JY7V6lRkStKcKTvHO5NVSQRv+RV+FIL5pvDoLiAtSL9pKlC5x9PKQcZDsq7m4FO4d57mkhC6Z+QhAh3Jdk5JFw==
   /nanoid/2.0.1:
@@ -3669,6 +3680,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   axios: ^0.18.0
+  bcrypt: ^3.0.4
   body-parser: ^1.18.3
   cors: ^2.8.5
   express: ^4.16.4
