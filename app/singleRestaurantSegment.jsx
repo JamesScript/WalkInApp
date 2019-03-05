@@ -21,7 +21,7 @@ class SingleRestaurantSegment extends React.Component {
   
   submitRating(tableName) {
     const restaurant = this.props.tableData.restaurant;
-    const _id = this.props.tableData._id;
+    const _id = this.props.tableData.shortid;
     const rating = document.getElementById("ratingTable_"+tableName+"_"+_id).value;
     const postObject = {
       restaurant: restaurant,
@@ -78,7 +78,7 @@ class SingleRestaurantSegment extends React.Component {
     }
     return(
       <div>
-        <p>Tables Availability: {availableTables} / {this.props.tableData.tables.length}</p>
+        <p>Table Availability: {availableTables} / {this.props.tableData.tables.length}</p>
       </div>
     );
   }

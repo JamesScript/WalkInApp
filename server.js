@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 // Routes
 routes(app);
 
-// Socket
+// Socket - emits message to all users so page update in real-time
 io.on('connection', socket => {
   console.log('a user connected');
   socket.on('update tables', () => {

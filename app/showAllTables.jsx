@@ -14,9 +14,6 @@ class ShowAllTables extends React.Component {
     socket.on('update tables', () => {
       this.listAllTables() 
     });
-    socket.on('hello', () => {
-      console.log('hello from the ether');
-    });
   }
   
   listAllTables() {
@@ -29,7 +26,13 @@ class ShowAllTables extends React.Component {
   showTableList() {
     let tableArr = [];
     for (let i = 0; i < this.state.tables.length; i++) {
-      tableArr.push(<SingleRestaurantSegment tableData={this.state.tables[i]}/>);
+      // console.log(this.props.searchQuery);
+      const regex = new RegExp(this.props.searchQuery, 'i');
+      // console.log(this.state.tables[i].restaurant);
+      // console.log(regex.test(this.state.tables[i].restaurant));
+      if (this.props.searchQuery.length === 0 || regex.test(this.state.tables[i].restaurant)) {
+        tableArr.push(<SingleRestaurantSegment tableData={this.state.tables[i]}/>);
+      }
     }
     return tableArr;
   }
@@ -37,7 +40,6 @@ class ShowAllTables extends React.Component {
   render() {
     return(
       <div>
-        <h1>{this.props.searchQuery}</h1>
         <div>
           {this.showTableList()}
         </div>

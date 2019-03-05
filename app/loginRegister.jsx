@@ -9,6 +9,7 @@ class LoginRegister extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
+      opened: false,
       isRestaurant: false,
       realname: ""
     }
@@ -24,7 +25,7 @@ class LoginRegister extends React.Component {
           realname: res.data.realname, 
           isRestaurant: res.data.isRestaurant
         });
-        document.getElementById("app").style.flexDirection = "column";
+        document.getElementById("app").style.flexDirection = "column-reverse";
       }
     });
   }

@@ -91,7 +91,7 @@ module.exports = (app, socket) => {
     });
   });
   
-  // Add multiple tables in one go
+  // Add a table with your custom name (e.g. 'outdoor_1') 
   app.post('/addCustomTable', (req, res) => {
     models.user.find({username: req.user.username}, (err, docs) => {
       if (err) return console.error(err);
@@ -113,11 +113,12 @@ module.exports = (app, socket) => {
     });
   });
   
+  // List All Tables - this will be the data sent every time socket.io emits so all users can see real-time updates
   app.get('/listAllTables', (req, res) => {
     models.user.find({isRestaurant: true}, (err, docs) => {
       let tablesToSend = []
       docs.forEach(doc => {
-        tablesToSend.push({restaurant: doc.realname, id: doc.shortid, tables: doc.tables});
+        tablesToSend.push({restaurant: doc.realname, shortid: doc.shortid, tables: doc.tables});
       });
       res.send(tablesToSend);
     });
