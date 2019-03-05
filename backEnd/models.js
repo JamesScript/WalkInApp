@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   shortid: String
 });
 userSchema.methods.validPassword = (pwd, user) => {
-  return bcrypt.compare(pwd, user.password).then(res => res);
+  return bcrypt.compareSync(pwd, user.password);
 };
 const User = mongoose.model('User', userSchema);
 
