@@ -77,8 +77,10 @@ input[type=submit]:focus, button:focus {
   align-items: center;
 }
 
-#tableSection {
+#mainSection {
   margin: 20px;
+  max-width: 640px;
+  background: #EEF;
 }
 
 #appName {
@@ -155,4 +157,10 @@ input[type=submit]:focus, button:focus {
 .tableInfo p {
   width: 100px;
   text-align: left;
+}
+
+@media only screen and (max-width: 940px) {
+  #app {
+    flex-direction: column-reverse;
+  }
 }

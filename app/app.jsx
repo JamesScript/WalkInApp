@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 const LoginRegister = require('./loginRegister');
-const TableSection = require('./tableSection');
+const MainSection = require('./mainSection');
 const RestaurantSettings = require('./restaurantSettings');
 
 class App extends React.Component {
@@ -13,8 +13,8 @@ class App extends React.Component {
   render() {
     return(
       <div id="app">
+        <MainSection/>
         <LoginRegister/>
-        <TableSection/>
         <RestaurantSettings/>
       </div>
     );

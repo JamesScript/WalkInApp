@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const ShowAllTables = require('./showAllTables');
 
-class TableSection extends React.Component {
+class MainSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,7 @@ class TableSection extends React.Component {
   
   render() {
     return(
-      <div id="tableSection">
+      <div id="mainSection">
         <h1 id="appName">WalkIn App</h1>
         <h2>The Restaurant Virtual-Queuing App of the Future</h2>
         <p className="description">We all know that the worst letter of the alphabet lies between P and R. That's why we've decided it's about
@@ -33,4 +33,4 @@ class TableSection extends React.Component {
   }
 }
 
-module.exports = TableSection;
+module.exports = MainSection;
