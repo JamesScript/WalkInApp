@@ -1,8 +1,11 @@
+// Dependencies
 const React = require('react');
 const axios = require('axios');
 
+// Modules
 const ShowAllTables = require('./showAllTables');
 
+// Main Section - shows all restaurants, their tables, and their availability at a glance
 class MainSection extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +15,7 @@ class MainSection extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   
+  // Update search query - sent as props to ShowAllTables component, which is used to produce a RegExp 
   handleChange() {
     const getVal = id => document.getElementById(id).value;
     this.setState({searchQuery: getVal('searchBar')});

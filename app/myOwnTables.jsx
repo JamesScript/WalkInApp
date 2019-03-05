@@ -2,7 +2,8 @@
 const React = require('react');
 const axios = require('axios');
 
-class TableOfMyTables extends React.Component {
+// Shows all your tables in the restaurant settings
+class MyOwnTables extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +24,7 @@ class TableOfMyTables extends React.Component {
     }
   }
   
+  // Get My Tables - update state with data of own tables from DB
   getMyTables() {
     axios.get('/listMyTables')
     .then(res => {
@@ -30,6 +32,7 @@ class TableOfMyTables extends React.Component {
     });
   }
   
+  // Add multiple tables in one fell swoop from 'Table_1' to specified number
   addMultiTables() {
     const numberOfTables = document.getElementById('tableNumberInput').value;
     axios.post('/addMultiTables', {tables: numberOfTables})
@@ -39,6 +42,7 @@ class TableOfMyTables extends React.Component {
     });
   }
   
+  // Add your own table with a custom name (e.g. outdoor tables etc)
   addCustomTable() {
     const customTable = document.getElementById('nameOfTableInput').value;
     axios.post('/addCustomTable', {tableName: customTable})
@@ -48,6 +52,7 @@ class TableOfMyTables extends React.Component {
     });
   }
   
+  // Remove a table
   removeTable(tableName) {
     axios.post('/deleteTable', {tableToDelete: tableName})
     .then(res => {
@@ -55,6 +60,7 @@ class TableOfMyTables extends React.Component {
     });
   }
   
+  // Toggle whether a table is available or not
   toggleAvailability(tableName) {
     axios.post('/toggleAvailability', {tableToToggle: tableName})
     .then(res => {
@@ -62,6 +68,7 @@ class TableOfMyTables extends React.Component {
     });
   }
   
+  // Show tables
   showTables() {
     let tableArr = [];
     for (let i = 0; i < this.state.myTables.length; i++) {
@@ -80,11 +87,14 @@ class TableOfMyTables extends React.Component {
     return tableArr;
   }
   
+  // Remove all tables
   removeAllTables() {
-    axios.post('/removeAllTables', {})
-    .then(res => {
-      this.setState({myTables: []});
-    });
+    if (confirm("Are you sure you want to delete all of your tables? This cannot be undone.")) {
+      axios.post('/removeAllTables', {})
+      .then(res => {
+        this.setState({myTables: []});
+      });
+    }
   }
   
   render() {
@@ -115,4 +125,4 @@ class TableOfMyTables extends React.Component {
   }
 }
 
-module.exports = TableOfMyTables;
+module.exports = MyOwnTables;

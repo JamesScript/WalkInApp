@@ -2,8 +2,10 @@
 const React = require('react');
 const axios = require('axios');
 
+// Modules
 const UserForm = require('./userForm');
 
+// Log In and Registering Form
 class LoginRegister extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,7 @@ class LoginRegister extends React.Component {
     this.checkIfLoggedIn();
   }
   
+  // Check if logged in and update state with important user data
   checkIfLoggedIn() {
     axios.get('/userData')
     .then(res => {
@@ -30,18 +33,20 @@ class LoginRegister extends React.Component {
     });
   }
   
+  // Log out
   logout() {
     axios.post('/logout')
     .then(res => {
-      console.log(res.data);
       window.location.reload();
     });
   }
   
+  // Show restaurant settings - where restaurants can update their status
   showRestaurantSettings() {
     document.getElementById("restaurantSettings").style.display = "block";
   }
   
+  // Restaurant Button - only show is user is a restaurant and not a customer
   restaurantButton() {
     return(
       <div>
@@ -50,6 +55,7 @@ class LoginRegister extends React.Component {
     );
   }
   
+  // Render this if logged in
   loggedIn() {
     return(
       <div id="welcomeMessage">
@@ -60,6 +66,7 @@ class LoginRegister extends React.Component {
     );
   }
   
+  // Render this if not logged in
   notLoggedIn() {
     return(
       <div id="loginRegister">
