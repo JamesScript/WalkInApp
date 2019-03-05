@@ -23,7 +23,7 @@ class RestaurantSettings extends React.Component {
       <div style={this.style} id="restaurantSettings">
         <div id="rsInnerBox">
           <h1>Restaurant Settings</h1> 
-          <TableOfMyTables/>
+          <MyOwnTables/>
           <button onClick={this.exit}>Exit</button>
         </div>
       </div>
