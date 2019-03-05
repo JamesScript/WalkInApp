@@ -39,6 +39,7 @@ module.exports = (app, socket) => {
       res.send(req.user);
   });
   
+  // Log out
   app.post('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
@@ -127,6 +128,7 @@ module.exports = (app, socket) => {
     });
   });
   
+  // List My Tables - for own Restaurant Settings
   app.get('/listMyTables', (req, res) => {
     if (req.user) {
       models.user.find({username: req.user.username}, (err, docs) => {
@@ -135,6 +137,7 @@ module.exports = (app, socket) => {
     }
   });
   
+  // Delete a table
   app.post('/deleteTable', (req, res) => {
     models.user.find({username: req.user.username}, (err, docs) => {
       if (err) return console.error(err);
@@ -149,6 +152,7 @@ module.exports = (app, socket) => {
     });
   });
   
+  // Delete All Tables
   app.post('/removeAllTables', (req, res) => {
     models.user.findOneAndUpdate({username: req.user.username}, {tables: []}, err => {
       if (err) return console.error(err);
@@ -156,6 +160,7 @@ module.exports = (app, socket) => {
     });
   });
   
+  // Toggle Whether A Table is Available or Not
   app.post('/toggleAvailability', (req, res) => {
     models.user.find({username: req.user.username}, (err, docs) => {
       if (err) return console.error(err);
@@ -173,6 +178,7 @@ module.exports = (app, socket) => {
     });
   });
   
+  // Rate A Table from 0 - 5
   app.post('/rateTable', (req, res) => {
     models.user.find({realname: req.body.restaurant}, (err, docs) => {
       if (err) return console.error(err);

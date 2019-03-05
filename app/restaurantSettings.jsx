@@ -1,8 +1,9 @@
 const React = require('react');
 const axios = require('axios');
 
-const TableOfMyTables = require('./tableOfMyTables');
+const MyOwnTables = require('./myOwnTables');
 
+// Restaurant Settings - update your tables and their availabiity
 class RestaurantSettings extends React.Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,7 @@ class RestaurantSettings extends React.Component {
     }
   }
   
+  // Close the interface and update your restaurant for all to see
   exit() {
     document.getElementById('restaurantSettings').style.display = "none";
     socket.emit('update tables');

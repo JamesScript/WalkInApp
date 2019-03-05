@@ -1,6 +1,8 @@
+// Dependencies
 const React = require('react');
 const axios = require('axios');
 
+// Each restaurant on the main page - contains the tables and some statistics
 class SingleRestaurantSegment extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,7 @@ class SingleRestaurantSegment extends React.Component {
     this.checkIfLoggedIn();
   }
   
+  // Check if logged in and update state - determines whether user can see the rate-table inputs
   checkIfLoggedIn() {
     axios.get('/amILoggedIn')
     .then(res => {
@@ -19,6 +22,7 @@ class SingleRestaurantSegment extends React.Component {
     });
   }
   
+  // Submit rating of a table
   submitRating(tableName) {
     const restaurant = this.props.tableData.restaurant;
     const _id = this.props.tableData.shortid;
@@ -31,10 +35,12 @@ class SingleRestaurantSegment extends React.Component {
     axios.post('/rateTable', postObject)
     .then(res => {
       alert(res.data);
+      // update everyone's state in real-time
       socket.emit('update tables');
     });
   }
   
+  // Render rate table section if user is logged in
   rateTableSection(currentTable, _id) {
     return(
       <div>
@@ -45,20 +51,24 @@ class SingleRestaurantSegment extends React.Component {
     );
   }
   
+  // Show the tables that belong to this restaurant
   showTables() {
     let tableArr = [];
     const tablesLength = this.props.tableData.tables.length;
+    // Show up to 3 unless user chooses to see them all
     let limiter = this.state.showingAllTables || tablesLength < 3 ? tablesLength : 3;
     const restaurant = this.props.tableData.restaurant;
     const _id = this.props.tableData.shortid;
     for (let i = 0; i < limiter; i++) {
       const currentTable = this.props.tableData.tables[i];
       let avgRatingStr = "None";
+      // Work out average rating (mean) to one decimal place if there is one or more ratings
       if (currentTable.ratings.length > 0) {
         const ratingsNums = currentTable.ratings.map(rating => rating.rating*1);
         const averageRating = ratingsNums.reduce((a, b) => a + b) / ratingsNums.length;
         avgRatingStr = Math.floor(averageRating) === averageRating ? averageRating.toString() : averageRating.toFixed(1);
       }
+      // Push JSX to array
       tableArr.push(
         <div className="tableInfo">
           <p>{currentTable.numberOrName}</p>
@@ -71,6 +81,7 @@ class SingleRestaurantSegment extends React.Component {
     return tableArr;
   }
   
+  // Statistics on table availability
   statistics() {
     let availableTables = 0;
     for (let i = 0; i < this.props.tableData.tables.length; i++) {
@@ -83,6 +94,7 @@ class SingleRestaurantSegment extends React.Component {
     );
   }
   
+  // Hide tables option
   hideTablesToggle() {
     return(
       <div>
@@ -91,6 +103,7 @@ class SingleRestaurantSegment extends React.Component {
     );
   }
   
+  // Show all tables option
   showAllTablesToggle() {
     return (
       <div>
