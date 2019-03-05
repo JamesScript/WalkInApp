@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const shortid = require('shortid');
+const bcrypt = require('bcrypt');
 
 const models = require('./models');
 const passportSetup = require('./passportSetup');
@@ -53,18 +54,20 @@ module.exports = (app, socket) => {
         return res.send("username exists");
       }
       // Good to go if not returned by this point
-      const newUser = new models.user({
-        realname: req.body.realname,
-        username: req.body.username,
-        password: req.body.password,
-        isRestaurant: req.body.isRestaurant,
-        dateCreated: new Date(),
-        tables: [],
-        shortid: shortid.generate()
-      });
-      newUser.save((err) => {
-        if (err) return console.error(err);
-        return res.send("registration successful");
+      bcrypt.hash(req.body.password, process.env.SALT_ROUNDS*1, (err, hash) => {
+        const newUser = new models.user({
+          realname: req.body.realname,
+          username: req.body.username,
+          password: hash,
+          isRestaurant: req.body.isRestaurant,
+          dateCreated: new Date(),
+          tables: [],
+          shortid: shortid.generate()
+        });
+        newUser.save((err) => {
+          if (err) return console.error(err);
+          return res.send("registration successful");
+        });
       });
     });
   });

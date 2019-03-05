@@ -1,5 +1,6 @@
 // Dependencies
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // Mongoose Connection
 mongoose.connect(process.env.DB);
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema({
   shortid: String
 });
 userSchema.methods.validPassword = (pwd, user) => {
-  return user.password === pwd;
+  return bcrypt.compare(pwd, user.password).then(res => res);
 };
 const User = mongoose.model('User', userSchema);
 

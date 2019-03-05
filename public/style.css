@@ -110,6 +110,7 @@ input[type=submit]:focus, button:focus {
   background: rgba(0, 0, 0, 0.5);
   width: 100vw;
   height: 100vh;
+  top: 0;
   padding: 50px;
   display: flex;
   justify-content: center;
